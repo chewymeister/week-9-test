@@ -1,4 +1,5 @@
 require 'rspec'
+require 'open-uri'
 require_relative './questions'
 
 RSpec.configure do |config|
@@ -108,7 +109,7 @@ describe 'the Friday test :)' do
 
   specify 'average_of_array' do
     n = average_of_array [10, 15, 25]
-    expect(n).to eq 33
+    expect(n).to eq 17
   end
 
   specify 'get_elements_until_greater_than_five' do
@@ -147,7 +148,7 @@ describe 'the Friday test :)' do
   end
 
   specify 'round_down_number' do
-    n = round_up_number 4.9
+    n = round_down_number 4.9
     expect(n).to eq 4
   end
 
@@ -175,7 +176,7 @@ describe 'the Friday test :)' do
   end
 
   specify 'get_upper_limit_of' do
-    n = get_upper_limit_of 1..20
+    n = get_upper_limit_of(1..20)
     expect(n).to eq 20
   end
 
@@ -190,12 +191,12 @@ describe 'the Friday test :)' do
   specify 'square_root_of' do
     a = square_root_of 9
     b = square_root_of 3
-    expect(a).to eq 9.0
-    expect(a).to eq 1.7320508075688772
+    expect(a).to eq 3.0
+    expect(b).to eq 1.7320508075688772
   end
 
   specify 'word_count_a_file' do
-    n = word_count_a_file 'lorem.txt'
+    n = word_count_a_file('lorem.txt')
     expect(n).to eq 70
   end
 
@@ -217,7 +218,15 @@ describe 'the Friday test :)' do
   end
 
   specify 'count_words_of_each_length_in_a_file' do
-    n = count_words_of_each_length_in_a_file('lorem.txt') || []
+    n = count_words_of_each_length_in_a_file('lorem.txt')
     expect(Hash[n.sort]).to eq({1=>1, 2=>5, 3=>7, 4=>12, 5=>14, 6=>4, 7=>8, 8=>6, 9=>6, 10=>2, 11=>2, 12=>3}) 
+    # expect(n).to eq [1,2,3]
   end
+
+  specify 'does fizzbuzz without fucking modular' do
+    expect(fizzbuzz(5)).to eq 'Buzz'
+    expect(fizzbuzz(30)).to eq 'FizzBuzz'
+    expect(fizzbuzz(6)).to eq 'Fizz'
+  end
+
 end
