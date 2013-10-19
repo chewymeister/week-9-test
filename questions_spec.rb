@@ -223,10 +223,12 @@ describe 'the Friday test :)' do
     # expect(n).to eq [1,2,3]
   end
 
-  specify 'does fizzbuzz without fucking modular' do
+  specify 'does fizzbuzz without modular' do
     expect(fizzbuzz(5)).to eq 'Buzz'
     expect(fizzbuzz(30)).to eq 'FizzBuzz'
     expect(fizzbuzz(6)).to eq 'Fizz'
   end
+
+  ninety_nine_bottles_of_beer
 
 end

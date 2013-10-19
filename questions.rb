@@ -2,9 +2,7 @@ require 'open-uri'
 
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
-  array.select do |item|
-    item.chars.shift == "a"
-  end
+  array.select{|word| word[0] == 'a'}
 end
 
 # keep only the elements that start with a vowel
@@ -373,13 +371,13 @@ end
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
   n = 99
-while n <= 99
-
-  print "#{n} Bottles of beer on the wall, #{n} bottles of beer. \n"
-  n -= 1 
-  print "Take one down, pass it around, #{n} bottles of beer on the wall"
-  if n == 0
-    "No more bottles of beer on the wall, no more bottles of beer. \n
-Go to the store and buy some more, 99 bottles of beer on the wall."
+  while n >0
+    print "#{n} Bottles of beer on the wall, #{n} bottles of beer. \n"
+    n -= 1 
+    print "Take one down, pass it around, #{n} bottles of beer on the wall \n"
+    if n == 0
+    print "No more bottles of beer on the wall, no more bottles of beer.
+    Go to the store and buy some more, 99 bottles of beer on the wall. \n"
+    end
   end
 end
