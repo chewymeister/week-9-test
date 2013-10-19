@@ -232,7 +232,7 @@ end
 # should return true for a 3 dot range like 1...20, false for a 
 # normal 2 dot range
 def is_a_3_dot_range?(range)
-  !range.include? range.last
+  range.exclude_end?
 end
 
 # get the square root of a number
@@ -270,10 +270,10 @@ end
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
   @date = Date.parse birthday.to_s
-  @formatted_date = @date.strftime("%A")
+  @formatted_date = @date.strftime "%A"
   until @formatted_date == "Friday"
     @date = @date.next_year
-    @formatted_date = @date.strftime("%A")
+    @formatted_date = @date.strftime "%A"
   end
   @date.year
 end
@@ -285,8 +285,8 @@ end
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
   content = File.open(file_path).read
-  new_content = content.gsub(/[,.]/, '')
-  word_list = new_content.split
+  special_chars_removed = content.gsub(/[,.]/, '')
+  word_list = special_chars_removed.split
   @hash = Hash.new(0)
   word_list.each do |word|
     @hash[word.length] = @hash[word.length] += 1
@@ -331,13 +331,19 @@ end
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
   n = 99
-  while n >0
-    print "#{n} Bottles of beer on the wall, #{n} bottles of beer. \n"
-    n -= 1 
-    print "Take one down, pass it around, #{n} bottles of beer on the wall \n"
+  while n > -1
     if n == 0
-    print "No more bottles of beer on the wall, no more bottles of beer.
-    Go to the store and buy some more, 99 bottles of beer on the wall. \n"
+      print "No more bottles of beer on the wall, no more bottles of beer. \n"
+      print "Go to the store and buy some more, 99 bottles of beer on the wall. \n"
+      n -= 1
+    elsif n == 1
+      print "1 Bottle of beer on the wall, 1 bottle of beer. \n"
+      print "Take one down, pass it around, 0 bottles of beer on the wall. \n"
+      n -= 1
+    else
+      print "#{n} Bottles of beer on the wall, #{n} bottles of beer. \n"
+      n -= 1 
+      print "Take one down, pass it around, #{n} bottles of beer on the wall \n"
     end
   end
 end

@@ -227,6 +227,9 @@ describe 'the Friday test :)' do
     expect(fizzbuzz(5)).to eq 'Buzz'
     expect(fizzbuzz(30)).to eq 'FizzBuzz'
     expect(fizzbuzz(6)).to eq 'Fizz'
+    expect(fizzbuzz(7)).to eq 7
+    expect(fizzbuzz(1001)).to eq 1001
+    expect(fizzbuzz(300)).to eq 'FizzBuzz'
   end
 
   ninety_nine_bottles_of_beer
