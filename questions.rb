@@ -204,24 +204,23 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-  word_list = string.split
-  new_word_list = word_list.map do |word|
-    if (word == 'and') || (word == 'the')
-      word + ' '
+  non_capitals = ['and', 'the', 'a']
+  new_word_list = string.split.map do |word|
+    if non_capitals.include? word
+      word
     else
-      word.capitalize + ' '
+      word.capitalize!
     end
   end
   new_word_list.first.capitalize!
-  new_word_list.last.strip!
-  new_word_list.join
+  new_word_list.join(' ')
 end
 
 # return true if a string contains any special characters
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
-  !(string =~ /^[a-zA-Z0-9_.-]*$/)
+  !(string =~ /^[a-zA-Z0-9]*$/)
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
@@ -263,7 +262,6 @@ def is_a_2014_bank_holiday?(date)
   content = File.open('dates.txt').read
   formatted_date = date.strftime("%A %-d %B")
   content.include? formatted_date
-  # content
 end
 
 # given your birthday this year, this method tells you
@@ -287,21 +285,13 @@ end
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
   content = File.open(file_path).read
-  # new_content = content.split.select do |word|
-  #   word =~ /[\W]/
-  # end
   new_content = content.gsub(/[,.]/, '')
   word_list = new_content.split
-  # word_list = new_content.split
-  # word_list = content.split(' ')
-  # word_list
-  # new_content
   @hash = Hash.new(0)
   word_list.each do |word|
     @hash[word.length] = @hash[word.length] += 1
   end
   @hash
-  # @hash.inject {|sum, key, value|}
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
