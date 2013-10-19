@@ -1,4 +1,4 @@
-require 'open-uri'
+# require 'open-uri'
 
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
